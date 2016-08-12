@@ -111,10 +111,13 @@ fi
 
 # stash only the unsaved changes.  Regular git stash includes staged changes, but we don't want that.
 # Here's the workaround, from: http://stackoverflow.com/a/29863853/123674
+# tell the stash-cleanup.sh hook, if it's configured, not to run
+export HOOK_SKIP_STASH_CLEANUP_CHECK=1
 git commit -q --no-verify -m "~~~ saved index ~~~"
 git stash save -q "unstaged-stash-$message"
 unstaged_stash=$(git rev-parse -q --verify refs/stash)
 git reset -q --soft HEAD~1
+unset HOOK_SKIP_STASH_CLEANUP_CHECK
 
 # Now the staged changes are back in the index,
 # and the unstaged ones are in the stash.

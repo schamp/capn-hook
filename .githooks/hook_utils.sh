@@ -3,7 +3,11 @@
 HOOK_FILE=`basename $0`
 
 hook_echo () {
-    echo $* | sed "s/^/\[$HOOK_FILE\]: /g"
+    echo $* | hook_pipe
+}
+
+hook_pipe() {
+    sed "s/^/\[$HOOK_FILE\]: /g"
 }
 
 hook_verbose() {
@@ -32,10 +36,3 @@ indent() {
     sed "s/^/  /g"; 
 }
 
-confirm() {
-    MY_PROMPT=$*
-    hook_echo $MY_PROMPT
-    read ANSWER
-    JUNK=$(echo "$ANSWER" | grep -iq "^y")
-    return $?
-}

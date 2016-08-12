@@ -22,10 +22,6 @@ fi
 
 source $hook_state_file
 
-#hook_debug unstaged_stash: $unstaged_stash
-#hook_debug staged_stash: $staged_stash
-#hook_debug untracked_stash: $untracked_stash
-
 # don't check for unstaged_stash -- there might not be any, and the variable might be the empty string
 
 if [ -z "$staged_stash" ]
@@ -55,25 +51,9 @@ then
     git reset HEAD -- . -q
 fi
 
-#git status
-#hook_echo cached_diff:
-#git diff --cached | cat
-#hook_echo uncached_diff:
-#git diff | cat
-#hook_echo top of stash:
-#git stash show -p | cat
-
 # Restore staged changes
 hook_echo "Restoring staged changes..."
 git reset --hard -q && git stash pop --index -q
-
-#git status
-#hook_echo cached_diff:
-#git diff --cached | cat
-#hook_echo uncached_diff:
-#git diff | cat
-#hook_echo top of stash:
-#git stash show -p | cat
 
 UNSTAGED_STASH=$(git stash list | head -n 1 | grep unstaged-stash)
 # Restore unstaged changes that are on top of the stash
@@ -107,8 +87,7 @@ do
         fi
 
     fi
-#    git status
-#    git diff | cat # force it to print out instead of waiting for input
+	
     UNSTAGED_STASH=$(git stash list | head -n 1 | grep unstaged-stash)
 done
 
