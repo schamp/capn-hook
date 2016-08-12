@@ -29,7 +29,7 @@ hook_debug() {
 
 files_to_commit() {
     FILES=$(git diff --cached --name-only)
-    echo $FILES
+    echo "$FILES"
 }
 
 indent() {
