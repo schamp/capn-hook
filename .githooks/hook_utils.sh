@@ -27,6 +27,13 @@ hook_debug() {
     fi
 }
 
+# get list of new or modified, but not deleted, files belonging to this commit
+modified_files_to_commit() {
+    FILES=$(git diff --cached --name-status | grep -v '^D' | cut -f 2)
+    echo "$FILES"
+}
+
+# get list of all files belonging to this commit
 files_to_commit() {
     FILES=$(git diff --cached --name-only)
     echo "$FILES"

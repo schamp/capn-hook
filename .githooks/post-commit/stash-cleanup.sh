@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# A post-commit hook to see whether any stale state from the pre-commit hooks
+# is still out there.
+# Prompt the user to clean it up.
+
 source .githooks/hook_utils.sh
 
 # set this variable in the environment if you want to skip this check
