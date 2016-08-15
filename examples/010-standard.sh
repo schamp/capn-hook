@@ -13,6 +13,26 @@ source .githooks/hook_utils.sh
 # Get committed js or jsx files.
 # We don't want to try and format files that have been deleted.
 FILES="$(modified_files_to_commit | grep '\.jsx\?$')"
+FORMATTER=./node_modules/.bin/standard-format
+CHECKER=./node_modules/.bin/standard
+ERROR=
+
+if [ ! -x "$FORMATTER" ]
+then
+    hook_error "The standard formatter $FORMATTER does not appear to be installed.  Please run 'npm install' to install it."
+    ERROR=1
+fi
+
+if [ ! -x "$CHECKER" ]
+then
+    hook_error "The standard checker $CHECKER does not appear to be installed.  Please run 'npm install' to install it."
+    ERROR=1
+fi
+
+if [ "$ERROR" ]
+then
+    exit 1
+fi
 
 if [ -z "$FILES" ]
 then
@@ -22,7 +42,7 @@ else
     hook_echo "Running standards checker on files: $FILES"
 
     # check config to see if we should force-format it
-    FORMATTER_OUTPUT=$(./node_modules/.bin/standard-format -w $FILES)
+    FORMATTER_OUTPUT=$($FORMATTER -w $FILES)
     if [ "$FORMATTER_OUTPUT" ]
     then
         echo "$FORMATTER_OUTPUT" | hook_pipe
@@ -30,7 +50,7 @@ else
 
     # run the checker SECOND so that if there are violations the formatter can't fix,
     # only those are displayed to the user
-    CHECKER_OUTPUT=$(./node_modules/.bin/standard $FILES 2>/dev/null)
+    CHECKER_OUTPUT=$($CHECKER $FILES 2>/dev/null)
 
     FAILED_CHECKER=$?
 
