@@ -13,7 +13,7 @@ source .githooks/hook_utils.sh
 
 # all hooks run in the context of the root of the repository
 # FIXME: put into hook_utils.sh?
-hook_state_file=.hookstate
+hook_state_file=.githooks/.hookstate
 
 # if it's an empty commit, skip the hooks
 FILES=$(files_to_commit)

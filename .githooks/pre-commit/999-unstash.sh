@@ -11,7 +11,7 @@ then
 fi
 
 # get saved state from 000-stash.sh hook
-hook_state_file=.hookstate
+hook_state_file=.githooks/.hookstate
 
 hook_verbose "Reading hook state..."
 

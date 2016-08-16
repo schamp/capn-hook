@@ -174,7 +174,7 @@ check_file_contents() {
 }
 
 # remove any existing .hookstate file
-rm -f .hookstate
+rm -f .githooks/.hookstate
 
 # create a new test branch
 git checkout -b $TEST_BRANCH
@@ -262,9 +262,9 @@ check_no_unstaged_stash
 check_staged_stash $CURRENT_HEAD
 
 # check that the .hookstate file exists and has the right content
-if [ ! -e .hookstate ]
+if [ ! -e .githooks/.hookstate ]
 then
-    fail "The .hookstate file does not exist."
+    fail "The .githooks/.hookstate file does not exist."
 fi
 
 # now correct the error by updating the file
@@ -380,9 +380,9 @@ git commit -m "$TEST_NAME: $TEST_FILE"
 check_commit_failed $?
 
 # check that the .hookstate file exists and has the right content
-if [ ! -e .hookstate ]
+if [ ! -e .githooks/.hookstate ]
 then
-    fail "The .hookstate file does not exist."
+    fail "The .githooks/.hookstate file does not exist."
 fi
 
 # now correct the error by updating the file
@@ -438,9 +438,9 @@ git commit -m "$TEST_NAME: $TEST_FILE"
 check_commit_failed $?
 
 # check that the .hookstate file exists and has the right content
-if [ ! -e .hookstate ]
+if [ ! -e .githooks/.hookstate ]
 then
-    fail "The .hookstate file does not exist."
+    fail "The .githooks/.hookstate file does not exist."
 fi
 
 # now correct the error by updating the file
