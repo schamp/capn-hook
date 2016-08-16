@@ -19,13 +19,13 @@ ERROR=
 
 if [ ! -x "$FORMATTER" ]
 then
-    hook_error "The standard formatter $FORMATTER does not appear to be installed.  Please run 'npm install' to install it."
+    hook_error "The standard formatter $FORMATTER does not appear to be installed.  Please run 'npm install --save-dev standard-format' to install it."
     ERROR=1
 fi
 
 if [ ! -x "$CHECKER" ]
 then
-    hook_error "The standard checker $CHECKER does not appear to be installed.  Please run 'npm install' to install it."
+    hook_error "The standard checker $CHECKER does not appear to be installed.  Please run 'npm install --save-dev standard' to install it."
     ERROR=1
 fi
 
