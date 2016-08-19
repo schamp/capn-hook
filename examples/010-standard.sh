@@ -45,7 +45,7 @@ else
     FORMATTER_OUTPUT=$($FORMATTER -w $FILES)
     if [ "$FORMATTER_OUTPUT" ]
     then
-        echo "$FORMATTER_OUTPUT" | hook_pipe
+        echo "$FORMATTER_OUTPUT" | hook_pipe_error
     fi
 
     # run the checker SECOND so that if there are violations the formatter can't fix,
@@ -56,7 +56,7 @@ else
 
     if [ "$CHECKER_OUTPUT" ]
     then
-        echo "$CHECKER_OUTPUT" | hook_pipe
+        echo "$CHECKER_OUTPUT" | hook_pipe_error
     fi
 
     # check to see if there are any unstaged changes, if so, we need to abort and add them

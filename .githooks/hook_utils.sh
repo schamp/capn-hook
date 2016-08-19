@@ -21,6 +21,10 @@ hook_error() {
     echo $* | sed "s/^/\[$HOOK_FILE\]: ERROR: /g"
 }
 
+hook_pipe_error() {
+    sed "s/^/\[$HOOK_FILE\]: ERROR: /g"
+}
+
 hook_debug() {
     if [ $DEBUG ]; then
         hook_echo $*
