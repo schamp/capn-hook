@@ -109,7 +109,7 @@ else
     hook_verbose "Hook state file not found."
 fi
 
-# stash only the unsaved changes.  Regular git stash includes staged changes, but we don't want that.
+# stash only the unstaged changes.  Regular git stash includes staged changes, but we don't want that.
 # Here's the workaround, from: http://stackoverflow.com/a/29863853/123674
 # tell the stash-cleanup.sh hook, if it's configured, not to run
 export HOOK_SKIP_STASH_CLEANUP_CHECK=1

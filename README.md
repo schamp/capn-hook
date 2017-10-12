@@ -1,3 +1,9 @@
+# Deprecated
+
+I am recommending capn-hook be deprecated, since the introduction of the most excellent 
+[pre-commit](https://pre-commit.com).  It does everything capn-hook was meant to do, only better.
+Go there instead, but I will keep this around for historical purposes.
+
 # capn-hook
 
 A set of sh scripts for managing repo state for git hooks, primarily, pre-commit or pre-push hooks.
